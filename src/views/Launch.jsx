@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 const clientId = "biomonitor";
 const redirectUri = `${window.location.origin}/callback`;
-const scopes = "launch patient/*.rs openid fhirUser";
+const scopes = "launch user/*.crudsh openid fhirUser";
 
 function Launch() {
     const [searchParams] = useSearchParams();

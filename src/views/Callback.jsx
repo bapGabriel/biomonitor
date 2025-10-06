@@ -4,18 +4,19 @@ import { useNavigate } from "react-router-dom";
 
 function Callback() {
     const navigate = useNavigate();
-    
 
     useEffect(() => {
         const alreadyCalled = sessionStorage.getItem("token_requested");
-
-        if (alreadyCalled) return;
+        if (alreadyCalled == "true") return;
 
         sessionStorage.setItem("token_requested", "true");
 
         const params = new URLSearchParams(window.location.search);
         const code = params.get('code');
 
+        console.log("CODE:", code);
+        console.log("ORIGIN:", window.location.origin);
+        
         const iss = sessionStorage.getItem("iss");
         const token_endpoint = sessionStorage.getItem("token_endpoint");
 

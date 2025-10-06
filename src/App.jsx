@@ -1,15 +1,23 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "./components/Home"
-import Callback from "./components/Callback"
-import Launch from "./components/Launch"
+import Home from "./views/Home"
+import Callback from "./views/Callback"
+import Launch from "./views/Launch"
+import Navbar from "./partials/Navbar"
+import SelectPatient from "./views/SelectPatient"
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/callback" element={<Callback />} />
-      <Route path="/launch" element={<Launch />} />
-    </Routes>
+    <div className="min-h-screen flex flex-col md:flex-row">
+      <Navbar />
+      <div className="flex-1 flex flex-col md:flex-row md:items-center md:justify-center">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/callback" element={<Callback />} />
+            <Route path="/launch" element={<Launch />} />
+            <Route path="/patients" element={<SelectPatient />} />
+          </Routes>
+      </div>
+    </div>
   )
 }
 

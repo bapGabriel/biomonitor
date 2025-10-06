@@ -1,0 +1,34 @@
+import { useContext, useMemo } from "react";
+import { FHIRContext } from "../context/FHIRProvider";
+import { v4 as uuidv4 } from "uuid";
+import SelectionList from "../components/SelectionList";
+
+function ObservationSelection() {
+  const { selectedPatient, observations, selectedObservation, setSelectedObservation } = useContext(FHIRContext);
+
+  const obsWithUID = useMemo(() => {
+    if (!selectedPatient || !observations?.[selectedPatient._id]) return [];
+    return observations[selectedPatient._id].map((o) => ({
+      ...o,
+      _frontId: uuidv4(),
+    }));
+  }, [selectedPatient, observations]);
+
+  if (!selectedPatient) return <p>Selecione um paciente primeiro.</p>;
+  if (!obsWithUID.length) return <p>Nenhuma observação disponível.</p>;
+
+  return (
+    <div>
+      <h2 className="text-xl font-bold mb-2">Seleção de Observação</h2>
+      <SelectionList
+        items={obsWithUID}
+        selectedItem={selectedObservation}
+        setSelectedItem={setSelectedObservation}
+        getItemLabel={(o) => o.code?.coding?.[0]?.display || "Observação sem código"}
+        getItemId={(o) => o._frontId}
+      />
+    </div>
+  );
+}
+
+export default ObservationSelection;
