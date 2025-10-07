@@ -5,7 +5,7 @@ import ObservationSelection from "../partials/ObservationSelection";
 
 function Home() {
     return (
-        <div className="container mx-auto p-4 mt-4 border rounded shadow">
+        <div className="container mx-auto p-4 mt-4">
             <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-2 p-4 border rounded-xl shadow">
                     <ECGContainer />

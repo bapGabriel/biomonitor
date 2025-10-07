@@ -24,7 +24,18 @@ function ObservationSelection() {
         items={obsWithUID}
         selectedItem={selectedObservation}
         setSelectedItem={setSelectedObservation}
-        getItemLabel={(o) => o.code?.coding?.[0]?.display || "Observação sem código"}
+        getItemLabel={(o) => {
+          const display = o.code?.coding?.[0]?.display;
+          if (display) return display;
+
+          const code = o.code?.coding?.[0]?.code;
+          if (code) return code;
+
+          const text = o.code?.text;
+          if (text) return text;
+
+          return o.id ? `Observação ${o.id}` : "Observação sem código";
+        }}
         getItemId={(o) => o._frontId}
       />
     </div>
