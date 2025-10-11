@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Label from "../components/Navbar/Label";
-import NavLink from "../components/Navbar/NavLink";
-import { faFileWaveform, faHome, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Label from '../components/Navbar/Label';
+import { faFileWaveform, faHome, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     return (
@@ -22,7 +22,7 @@ function Navbar() {
                                 <span>Visualizador</span>
                             </Link>
                             <Link
-                                to="/search"
+                                to="/patients/search"
                                 className="flex items-center hover:bg-cyan-400 rounded w-full transition-colors duration-200 p-2"
                             >
                                 <FontAwesomeIcon icon={faSearch} className="mr-2" />
@@ -51,9 +51,7 @@ function Navbar() {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </nav>
     );
 }

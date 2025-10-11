@@ -1,9 +1,15 @@
+import React from 'react';
+import PatientSelection from '../partials/PatientSelection';
+import Container from '../components/Container';
+import Section from '../components/Section';
+
 function SelectPatient() {
     return (
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Select Patient</h2>
-            <p>This is a placeholder for the Select Patient view.</p>
-        </div>
+        <Container>
+            <Section title={'Seleção de Pacientes'}>
+                <PatientSelection />
+            </Section>
+        </Container>
     );
 }
 

@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { FHIRContext } from "../context/FHIRProvider";
+import React from 'react';
+import { useContext } from 'react';
+import { FHIRContext } from '../context/FHIRProvider';
 
 function ECGDynamic() {
     const { selectedObservation } = useContext(FHIRContext);
@@ -13,8 +14,8 @@ function ECGDynamic() {
     return (
         <div className="max-w-sm truncate">
             <div>
-                <p>Período: {sampledData?.period ?? "N/A"}</p>
-                <p>Dados: {sampledData?.data ?? "N/A"}</p>
+                <p>Período: {sampledData?.period ?? 'N/A'}</p>
+                <p>Dados: {sampledData?.data ?? 'N/A'}</p>
             </div>
 
             <h2>Gráfico ECG Dinâmico</h2>

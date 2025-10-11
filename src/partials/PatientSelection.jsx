@@ -1,8 +1,8 @@
-import { useContext, useMemo } from "react";
-import { FHIRContext } from "../context/FHIRProvider";
-import { v4 as uuidv4 } from "uuid";
-import SelectionList from "../components/SelectionList";
-
+import React from 'react';
+import { useContext, useMemo } from 'react';
+import { FHIRContext } from '../context/FHIRProvider';
+import { v4 as uuidv4 } from 'uuid';
+import SelectionList from '../components/SelectionList';
 
 function PatientSelection() {
     const { patients, selectedPatient, setSelectedPatient } = useContext(FHIRContext);
@@ -16,7 +16,6 @@ function PatientSelection() {
 
     return (
         <div>
-            <h2 className="text-xl font-bold mb-2">Seleção de Paciente</h2>
             <SelectionList
                 items={patientsWithUID}
                 selectedItem={selectedPatient}
@@ -28,7 +27,7 @@ function PatientSelection() {
                     const family = p.name?.[0]?.family || '';
 
                     const fullName = [given, family].filter(Boolean).join(' ').trim();
-                    return fullName || "Paciente sem nome";
+                    return fullName || 'Paciente sem nome';
                 }}
             />
         </div>

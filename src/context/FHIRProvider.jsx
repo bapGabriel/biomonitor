@@ -1,7 +1,9 @@
-import { createContext, useState, useEffect, use } from "react";
-import fhirClient from "../services/fhirClient";
-import { jwtDecode } from "jwt-decode";
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createContext, useState, useEffect } from 'react';
+import fhirClient from '../services/fhirClient';
+import { jwtDecode } from 'jwt-decode';
+import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 
 const FHIRContext = createContext();
 
@@ -17,14 +19,14 @@ function FHIRProvider({ children }) {
     const location = useLocation();
 
     useEffect(() => {
-        const storedToken = sessionStorage.getItem("access_token");
+        const storedToken = sessionStorage.getItem('access_token');
 
         const isLaunchOrCallback =
-            matchPath({ path: "/launch", end: false }, location.pathname) ||
-            matchPath({ path: "/callback", end: false }, location.pathname);
+            matchPath({ path: '/launch', end: false }, location.pathname) ||
+            matchPath({ path: '/callback', end: false }, location.pathname);
 
         if (!storedToken && !isLaunchOrCallback) {
-            navigate("/launch");
+            navigate('/launch');
         } else if (storedToken) {
             setToken(storedToken);
             setLoadingToken(false);
@@ -38,12 +40,12 @@ function FHIRProvider({ children }) {
         const fhirUser = decoded.fhirUser ?? null;
         if (!fhirUser) return;
 
-        const practitionerReference = fhirUser.replace(/^.+\/(Practitioner\/[A-Za-z0-9]+)$/, "$1");
+        const practitionerReference = fhirUser.replace(/^.+\/(Practitioner\/[A-Za-z0-9]+)$/, '$1');
 
         fhirClient
             .get(`/Patient?general-practitioner=${practitionerReference}`)
-            .then(res => setPatients(res.data.entry?.map(e => e.resource)) || [])
-            .catch(err => console.error("Error fetching patients:", err));
+            .then((res) => setPatients(res.data.entry?.map((e) => e.resource)) || [])
+            .catch((err) => console.error('Error fetching patients:', err));
     }, [token]);
 
     useEffect(() => {
@@ -53,15 +55,17 @@ function FHIRProvider({ children }) {
         }
     }, [selectedPatient]);
 
-
     async function loadObservations(patientId) {
         if (!token || observations[patientId]) return;
-        
+
         try {
             const res = await fhirClient.get(`/Observation?patient=Patient/${patientId}`);
-            setObservations(prev => ({ ...prev, [patientId]: res.data.entry?.map(e => e.resource) || [] }));
+            setObservations((prev) => ({
+                ...prev,
+                [patientId]: res.data.entry?.map((e) => e.resource) || [],
+            }));
         } catch (err) {
-            console.error("Error fetching observations:", err);
+            console.error('Error fetching observations:', err);
         }
     }
 
@@ -76,12 +80,16 @@ function FHIRProvider({ children }) {
                 selectedObservation,
                 token,
                 loadingToken,
-                loadObservations
+                loadObservations,
             }}
         >
             {children}
         </FHIRContext.Provider>
     );
 }
+
+FHIRProvider.propTypes = {
+    children: PropTypes.node,
+};
 
 export { FHIRContext, FHIRProvider };

@@ -1,7 +1,7 @@
-import ECGContainer from "../partials/ECGContainer";
-import PatientData from "../partials/PatientData";
-import PatientSelection from "../partials/PatientSelection";
-import ObservationSelection from "../partials/ObservationSelection";
+import React from 'react';
+import ECGContainer from '../partials/ECGContainer';
+import PatientData from '../partials/PatientData';
+import ObservationSelection from '../partials/ObservationSelection';
 
 function Home() {
     return (
@@ -13,15 +13,12 @@ function Home() {
                 <div className="col-span-1 p-4 border rounded-xl shadow">
                     <PatientData />
                 </div>
-                <div className="col-span-2 p-4 border rounded-xl shadow">
+                <div className="col-span-3 p-4 border rounded-xl shadow">
                     <ObservationSelection />
-                </div>
-                <div className="col-span-1 p-4 border rounded-xl shadow">
-                    <PatientSelection />
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Home;
