@@ -2,17 +2,18 @@ import React from 'react';
 import ECGContainer from '../partials/ECGContainer';
 import PatientData from '../partials/PatientData';
 import ObservationSelection from '../partials/ObservationSelection';
+import Section from '../components/Section';
 
 function Home() {
     return (
         <div className="container mx-auto p-4 mt-4">
             <div className="grid grid-cols-3 gap-4">
-                <div className="col-span-2 p-4 border rounded-xl shadow">
+                <div className="col-span-2 p-4 border rounded-xl shadow h-[600px]">
                     <ECGContainer />
                 </div>
-                <div className="col-span-1 p-4 border rounded-xl shadow">
+                <Section title={'Dados do Paciente'} className="col-span-1">
                     <PatientData />
-                </div>
+                </Section>
                 <div className="col-span-3 p-4 border rounded-xl shadow">
                     <ObservationSelection />
                 </div>

@@ -8,8 +8,8 @@ function Input({ type = 'text', value, onChange, placeholder = '', className = '
             value={value}
             onChange={(e) => onChange?.(e.target.value)}
             placeholder={placeholder}
-            className={`w-full p-2 border border-gray-300 rounded 
-        focus:outline-none focus:ring-2 focus:ring-blue-400 ${className}`}
+            className={`w-full p-2 border border-gray-300 rounded hover:shadow transition-shadow 
+        focus:outline-none focus:ring-2 focus:ring-cyan-500 ${className}`}
             {...props}
         />
     );

@@ -28,7 +28,7 @@ function SelectionList({ items, selectedItem, setSelectedItem, getItemLabel }) {
                             key={item._frontId}
                             onClick={() => setSelectedItem(item)}
                             className={`cursor-pointer px-4 py-2 rounded mb-1 transition-colors
-              ${selectedItem?._frontId === item._frontId ? 'bg-blue-500 text-white' : 'hover:bg-blue-100'}`}
+              ${selectedItem?._frontId === item._frontId ? 'bg-cyan-500 text-white' : 'hover:bg-cyan-100'}`}
                         >
                             {label}
                         </li>

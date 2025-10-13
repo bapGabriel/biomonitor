@@ -5,10 +5,6 @@ import { FHIRContext } from '../context/FHIRProvider';
 function ECGDynamic() {
     const { selectedObservation } = useContext(FHIRContext);
 
-    if (!selectedObservation) {
-        return <p>Nenhum dado de ECG selecionado.</p>;
-    }
-
     const sampledData = selectedObservation.component?.[0]?.valueSampledData;
 
     return (

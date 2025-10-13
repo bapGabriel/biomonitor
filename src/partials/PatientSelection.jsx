@@ -9,28 +9,30 @@ function PatientSelection() {
 
     const patientsWithUID = useMemo(() => {
         if (!patients) return [];
-        return patients.map((p) => ({ ...p, _frontId: uuidv4() }));
+        return patients.map((p) => ({ ...p, _frontId: p._id || uuidv4() }));
     }, [patients]);
 
-    if (!patients) return <p>Loading patients...</p>;
-
     return (
-        <div>
-            <SelectionList
-                items={patientsWithUID}
-                selectedItem={selectedPatient}
-                setSelectedItem={setSelectedPatient}
-                getItemLabel={(p) => {
-                    if (p.name?.[0]?.text) return p.name[0].text;
+        <>
+            {patients ? (
+                <SelectionList
+                    items={patientsWithUID}
+                    selectedItem={selectedPatient}
+                    setSelectedItem={setSelectedPatient}
+                    getItemLabel={(p) => {
+                        if (p.name?.[0]?.text) return p.name[0].text;
 
-                    const given = p.name?.[0]?.given?.join(' ') || '';
-                    const family = p.name?.[0]?.family || '';
+                        const given = p.name?.[0]?.given?.join(' ') || '';
+                        const family = p.name?.[0]?.family || '';
 
-                    const fullName = [given, family].filter(Boolean).join(' ').trim();
-                    return fullName || 'Paciente sem nome';
-                }}
-            />
-        </div>
+                        const fullName = [given, family].filter(Boolean).join(' ').trim();
+                        return fullName || 'Paciente sem nome';
+                    }}
+                />
+            ) : (
+                <span>Carregando pacientes...</span>
+            )}
+        </>
     );
 }
 

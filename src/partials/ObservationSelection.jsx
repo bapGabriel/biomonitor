@@ -12,7 +12,7 @@ function ObservationSelection() {
         if (!selectedPatient || !observations?.[selectedPatient._id]) return [];
         return observations[selectedPatient._id].map((o) => ({
             ...o,
-            _frontId: uuidv4(),
+            _frontId: o._id || uuidv4(),
         }));
     }, [selectedPatient, observations]);
 
