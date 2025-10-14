@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const clientId = 'biomonitor';
-const redirectUri = `${window.location.origin}/callback`;
+const redirectUri = `${import.meta.env.VITE_APP_URL}/callback`;
 const scopes = 'launch user/*.crudsh openid fhirUser';
 
 function Launch() {

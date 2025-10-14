@@ -16,7 +16,7 @@ function Callback() {
         const code = params.get('code');
 
         console.log('CODE:', code);
-        console.log('ORIGIN:', window.location.origin);
+        console.log('ORIGIN:', import.meta.env.VITE_APP_URL);
 
         const token_endpoint = sessionStorage.getItem('token_endpoint');
 
@@ -25,7 +25,7 @@ function Callback() {
                 .post(token_endpoint, {
                     grant_type: 'authorization_code',
                     scope: 'patient/*.rs',
-                    redirect_uri: `${window.location.origin}/callback`,
+                    redirect_uri: `${import.meta.env.VITE_APP_URL}/callback`,
                     code: code,
                     client_id: 'biomonitor',
                 })

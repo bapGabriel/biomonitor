@@ -5,7 +5,10 @@ import 'dotenv/config';
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
+    base: '',
     server: {
         port: process.env.PORT,
+        host: true,
+        allowedHosts: ['if4health.charqueadas.ifsul.edu.br'],
     },
 });
