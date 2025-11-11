@@ -23,22 +23,22 @@ function PatientData() {
         unknown: 'Desconhecido',
     };
     const gender = genderMap[selectedPatient.gender] || 'Desconhecido';
-    const birthDate =
-        new Date(selectedPatient.birthDate).toLocaleDateString('pt-BR') || 'Desconhecido';
+    const birthDate = new Date(selectedPatient.birthDate).toDateString() || 'Desconhecido';
     const address = selectedPatient.address?.[0];
     const addressString = address
         ? `${address.line?.join(', ')}, ${address.city || ''}, ${address.state || ''}, ${address.postalCode || ''}`
         : 'Desconhecido';
-    const telecom = selectedPatient.telecom?.[0];
-    const phone = telecom?.system === 'phone' ? telecom.value : 'Desconhecido';
-    const email = telecom?.system === 'email' ? telecom.value : 'Desconhecido';
+
+    const telecom = selectedPatient.telecom || null;
+    const phone = telecom?.find((t) => t.system === 'phone')?.value || null;
+    const email = telecom?.find((t) => t.system === 'email')?.value || null;
 
     return (
         <div className="p-6 max-w-md mx-auto">
             <div className="flex items-center mb-6">
                 <img
                     className="w-24 h-24 rounded-full object-cover"
-                    src={`https://robohash.org/${selectedPatient.id || 'biomonitor'}`}
+                    src={`https://robohash.org/${selectedPatient._id || 'biomonitor'}`}
                     alt="Avatar do paciente"
                 />
                 <div className="ml-6 space-y-1">

@@ -31,7 +31,7 @@ function Callback() {
                 })
                 .then((response) => {
                     sessionStorage.setItem('access_token', response.data.access_token);
-                    navigate('/');
+                    navigate('/patients/search');
                 })
                 .catch((error) => {
                     console.error('Erro adquirindo token.', error);

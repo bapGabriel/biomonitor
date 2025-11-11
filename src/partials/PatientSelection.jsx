@@ -4,7 +4,7 @@ import { FHIRContext } from '../context/FHIRProvider';
 import { v4 as uuidv4 } from 'uuid';
 import SelectionList from '../components/SelectionList';
 
-function PatientSelection() {
+function PatientSelection({ willRedirect = true }) {
     const { patients, selectedPatient, setSelectedPatient } = useContext(FHIRContext);
 
     const patientsWithUID = useMemo(() => {
@@ -28,6 +28,7 @@ function PatientSelection() {
                         const fullName = [given, family].filter(Boolean).join(' ').trim();
                         return fullName || 'Paciente sem nome';
                     }}
+                    willRedirect={willRedirect}
                 />
             ) : (
                 <span>Carregando pacientes...</span>

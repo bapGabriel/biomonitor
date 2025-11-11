@@ -21,6 +21,7 @@
         "jwt-decode": "^4.0.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-hook-form": "^7.66.0",
         "react-router-dom": "^7.5.0",
         "uuid": "^13.0.0"
     },

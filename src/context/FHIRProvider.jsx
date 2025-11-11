@@ -36,14 +36,8 @@ function FHIRProvider({ children }) {
     useEffect(() => {
         if (!token) return;
 
-        const decoded = jwtDecode(token);
-        const fhirUser = decoded.fhirUser ?? null;
-        if (!fhirUser) return;
-
-        const practitionerReference = fhirUser.replace(/^.+\/(Practitioner\/[A-Za-z0-9]+)$/, '$1');
-
         fhirClient
-            .get(`/Patient?general-practitioner=${practitionerReference}`)
+            .get(`/Patient`)
             .then((res) => setPatients(res.data.entry?.map((e) => e.resource)) || [])
             .catch((err) => console.error('Error fetching patients:', err));
     }, [token]);
@@ -74,6 +68,7 @@ function FHIRProvider({ children }) {
             value={{
                 patients,
                 observations,
+                setPatients,
                 selectedPatient,
                 setSelectedPatient,
                 setSelectedObservation,

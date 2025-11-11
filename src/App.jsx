@@ -5,6 +5,7 @@ import Callback from './views/Callback';
 import Launch from './views/Launch';
 import Navbar from './partials/Navbar';
 import SelectPatient from './views/SelectPatient';
+import Patient from './views/Patient';
 
 function App() {
     return (
@@ -16,8 +17,7 @@ function App() {
                     <Route path="/callback" element={<Callback />} />
                     <Route path="/launch" element={<Launch />} />
                     <Route path="/patients/search" element={<SelectPatient />} />
-                    <Route path="/patients/new" element={<SelectPatient />} />
-                    <Route path="/observation/new" element={<SelectPatient />} />
+                    <Route path="/patients" element={<Patient />} />
                 </Routes>
             </div>
         </div>

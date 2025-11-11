@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
+import { useNavigate } from 'react-router-dom';
 
-function SelectionList({ items, selectedItem, setSelectedItem, getItemLabel }) {
+function SelectionList({ items, selectedItem, setSelectedItem, getItemLabel, willRedirect }) {
     const [query, setQuery] = useState('');
+    const navigate = useNavigate();
 
     const filteredItems = items.filter((item) => {
         const label = getItemLabel(item) || '';
@@ -26,7 +28,12 @@ function SelectionList({ items, selectedItem, setSelectedItem, getItemLabel }) {
                     return (
                         <li
                             key={item._frontId}
-                            onClick={() => setSelectedItem(item)}
+                            onClick={() => {
+                                setSelectedItem(item);
+                                if (willRedirect) {
+                                    navigate('/');
+                                }
+                            }}
                             className={`cursor-pointer px-4 py-2 rounded mb-1 transition-colors
               ${selectedItem?._frontId === item._frontId ? 'bg-cyan-500 text-white' : 'hover:bg-cyan-100'}`}
                         >
